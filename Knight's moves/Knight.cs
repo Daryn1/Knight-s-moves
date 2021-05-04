@@ -8,14 +8,11 @@ namespace Knight_s_moves
 {
     class Knight
     {
-        private Cell currentPosition;
+        public Point currentPosition;
 
-        private const int maximumPossibleMoves = 8;
-
-        public Move GetMove(bool[][] board)
+        public Knight(Point currentPosition)
         {
-            var validMoves = GetValidMoves(board);
-
+            this.currentPosition = currentPosition;
         }
 
         public List<Move> GetValidMoves(bool[][] board)
@@ -23,23 +20,19 @@ namespace Knight_s_moves
             return GetPossibleMoves().Where(move => IsMoveValid(move, board)).ToList();
         }
 
-        public bool IsMoveValid(Move move, bool[][] board)
+        private bool IsMoveValid(Move move, bool[][] board)
         {
-            if (board[move.DestinationCell.X][])
-            {
-                
-            }
+            return !board[move.X][move.Y];
         }
 
-        public List<Move> GetPossibleMoves()
+        private List<Move> GetPossibleMoves()
         {
             return GetAllMoves().Where(move => IsMovePossible(move)).ToList();
         }
 
-        public bool IsMovePossible(Move move)
+        private bool IsMovePossible(Move move)
         {
-            return move.DestinationCell.X >= 0 && move.DestinationCell.X <= 7 &&
-                   move.DestinationCell.Y >= 0 && move.DestinationCell.Y <= 7;
+            return move.X >= 0 && move.X <= 7 && move.Y >= 0 && move.Y <= 7;
         }
 
         private List<Move> GetAllMoves()
@@ -48,75 +41,45 @@ namespace Knight_s_moves
             {
                 new Move()
                 {
-                    DestinationCell = new Cell()
-                    {
-                        X = currentPosition.X + 2,
-                        Y = currentPosition.Y + 1
-                    },
-                    StartCell = currentPosition
+                    X = currentPosition.X + 2,
+                    Y = currentPosition.Y + 1
                 },
                 new Move()
                 {
-                    DestinationCell = new Cell()
-                    {
-                        X = currentPosition.X - 2,
-                        Y = currentPosition.Y + 1
-                    },
-                    StartCell = currentPosition
+                    X = currentPosition.X - 2,
+                    Y = currentPosition.Y + 1
                 },
                 new Move()
                 {
-                    DestinationCell = new Cell()
-                    {
-                        X = currentPosition.X + 2,
-                        Y = currentPosition.Y - 1
-                    },
-                    StartCell = currentPosition
+                    X = currentPosition.X + 2,
+                    Y = currentPosition.Y - 1
+                },
+                
+                new Move()
+                {
+                    X = currentPosition.X - 2,
+                    Y = currentPosition.Y - 1
                 },
                 new Move()
                 {
-                    DestinationCell = new Cell()
-                    {
-                        X = currentPosition.X - 2,
-                        Y = currentPosition.Y - 1
-                    },
-                    StartCell = currentPosition
+                    X = currentPosition.X + 1,
+                    Y = currentPosition.Y + 2
                 },
                 new Move()
                 {
-                    DestinationCell = new Cell()
-                    {
-                        X = currentPosition.X + 1,
-                        Y = currentPosition.Y + 2
-                    },
-                    StartCell = currentPosition
+                    X = currentPosition.X - 1,
+                    Y = currentPosition.Y + 2
                 },
                 new Move()
                 {
-                    DestinationCell = new Cell()
-                    {
-                        X = currentPosition.X - 1,
-                        Y = currentPosition.Y + 2
-                    },
-                    StartCell = currentPosition
+                    X = currentPosition.X + 1,
+                    Y = currentPosition.Y - 2
                 },
+
                 new Move()
                 {
-                    DestinationCell = new Cell()
-                    {
-                        X = currentPosition.X + 1,
-                        Y = currentPosition.Y - 2
-                    },
-                    StartCell = currentPosition
-                },
-                new Move()
-                {
-                    DestinationCell = new Cell()
-                    {
-                        X = currentPosition.X - 1,
-                        Y = currentPosition.Y - 2
-                    },
-                    StartCell = currentPosition
+                    X = currentPosition.X - 1,
+                    Y = currentPosition.Y - 2
                 }
             };
 

@@ -4,10 +4,8 @@ using System.Text;
 
 namespace Knight_s_moves
 {
-    class Cell
+    interface IBestMoveFinder
     {
-        public int X { get; set; }
-
-        public int Y { get; set; }
+        public Move FindBestMove(bool[][] board, List<Move> validMoves);
     }
 }

@@ -6,8 +6,8 @@ namespace Knight_s_moves
 {
     class Move
     {
-        public Cell StartCell { get; set; }
+        public int X { get; set; }
 
-        public Cell DestinationCell  { get; set; }
+        public int Y { get; set; }
     }
 }
