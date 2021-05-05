@@ -14,13 +14,13 @@ namespace Knight_s_moves
             var knight = new Knight(startPosition);
             var consoleUi = new UserInterface();
 
-            Console.ReadKey();
-
             IBestMoveFinder algorithm = new EvaluationFunction();
             var game = new ChessGame(knight, algorithm);
             consoleUi.PlayAndShow(game);
             Console.WriteLine("Это был алгоритм, использующий функцию оценки.");
+            Console.WriteLine("Нажмите на любую клавишу 2 раза, чтобы запустить следующий алгоритм.");
 
+            Console.ReadKey();
             Console.ReadKey();
 
             algorithm = new RandomMoveTaker();
