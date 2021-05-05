@@ -1,28 +1,33 @@
 ﻿using System;
 using System.Drawing;
 using System.Threading;
-using Knight_s_moves;
+using Knight_s_moves.Algorithms;
 
-namespace Knights_moves
+namespace Knight_s_moves
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var knight = new Knight(new Point(0, 0));
-            var game = new ChessGame(knight, new RandomMoveTaker());
-            var boardDrawer = new BoardDrawer();
-            var numberOfMoves = 0;
+            var random = new Random();
+            var startPosition = new Point(random.Next(0, 8), random.Next(0, 8));
+            var knight = new Knight(startPosition);
+            var consoleUi = new UserInterface();
 
-            while (game.MoveKnight())
-            {
-                boardDrawer.Draw(game.board, knight.currentPosition);
-                numberOfMoves++;
-                Thread.Sleep(1000);
-            }
+            Console.ReadKey();
 
-            Console.WriteLine();
-            Console.WriteLine($"Возможных ходов для коня больше нет. Конь походил {numberOfMoves} раз");
+            IBestMoveFinder algorithm = new EvaluationFunction();
+            var game = new ChessGame(knight, algorithm);
+            consoleUi.PlayAndShow(game);
+            Console.WriteLine("Это был алгоритм, использующий функцию оценки.");
+
+            Console.ReadKey();
+
+            algorithm = new RandomMoveTaker();
+            knight.currentPosition = startPosition;
+            game = new ChessGame(knight, algorithm);
+            consoleUi.PlayAndShow(game);
+            Console.WriteLine("Это был алгоритм, выбирающий случайный ход.");
         }
     }
 }

@@ -9,5 +9,7 @@ namespace Knight_s_moves
         public int X { get; set; }
 
         public int Y { get; set; }
+
+        public int Score { get; set; }
     }
 }

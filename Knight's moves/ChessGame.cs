@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text;
+using Knight_s_moves.Algorithms;
 
 namespace Knight_s_moves
 {
@@ -9,7 +11,7 @@ namespace Knight_s_moves
     {
         public bool[][] board = new bool[8][];
 
-        private Knight knight;
+        public Knight knight;
 
         private IBestMoveFinder bestMoveFinder;
 
@@ -17,10 +19,10 @@ namespace Knight_s_moves
         {
             this.knight = knight;
             this.bestMoveFinder = bestMoveFinder;
-            Reset();
+            ResetBoard();
         }
 
-        public void Reset()
+        public void ResetBoard()
         {
             for (var i = 0; i < board.Length; ++i)
                 board[i] = new bool[] { false, false, false, false, false, false, false, false };

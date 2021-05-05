@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Knight_s_moves
+namespace Knight_s_moves.Algorithms
 {
     class RandomMoveTaker : IBestMoveFinder
     {

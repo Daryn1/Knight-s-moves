@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Knight_s_moves
+namespace Knight_s_moves.Algorithms
 {
     interface IBestMoveFinder
     {
