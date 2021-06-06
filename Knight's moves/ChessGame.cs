@@ -7,40 +7,41 @@ using Knight_s_moves.Algorithms;
 
 namespace Knight_s_moves
 {
-    class ChessGame
+    public class ChessGame
     {
-        public bool[][] board = new bool[8][];
+        /// <summary>
+        /// Игровая доска. true указывает клетку, на которую конь уже походил, false - на возможную для хода.
+        /// </summary>
+        public bool[][] Board;
 
-        public Knight knight;
+        public IFigure Knight { get; set; }
 
         private IBestMoveFinder bestMoveFinder;
 
-        public ChessGame(Knight knight, IBestMoveFinder bestMoveFinder)
+        public ChessGame(IFigure knight, IBestMoveFinder bestMoveFinder)
         {
-            this.knight = knight;
+            this.Knight = knight;
             this.bestMoveFinder = bestMoveFinder;
             ResetBoard();
         }
 
         public void ResetBoard()
         {
-            for (var i = 0; i < board.Length; ++i)
-                board[i] = new bool[] { false, false, false, false, false, false, false, false };
+            Board = CleanBoardGenerator.CreateCleanBoardOfSize(Constants.BoardSize);
         }
 
         public bool MoveKnight()
         {
-            var validMoves = knight.GetValidMoves(board);
+            var validMoves = Knight.GetValidMoves(Board);
 
             if (validMoves.Count == 0)
             {
                 return false;
             }
 
-            var bestMove = bestMoveFinder.FindBestMove(board, validMoves);
-            board[bestMove.X][bestMove.Y] = true;
-            knight.currentPosition.X = bestMove.X;
-            knight.currentPosition.Y = bestMove.Y;
+            var bestMove = bestMoveFinder.FindBestMove(Board, validMoves);
+            Board[bestMove.X][bestMove.Y] = true;
+            Knight.CurrentPosition = new Point(bestMove.X, bestMove.Y);
 
             return true;
         }

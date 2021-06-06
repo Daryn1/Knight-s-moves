@@ -14,7 +14,7 @@ namespace Knight_s_moves
 
             while (game.MoveKnight())
             {
-                boardDrawer.Draw(game.board, game.knight.currentPosition);
+                boardDrawer.Draw(game.Board, game.Knight.CurrentPosition);
                 numberOfMoves++;
                 Thread.Sleep(300);
             }

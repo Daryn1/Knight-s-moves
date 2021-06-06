@@ -4,24 +4,25 @@ using System.Linq;
 
 namespace Knight_s_moves.Algorithms
 {
-    class EvaluationFunction : IBestMoveFinder
+    public class EvaluationFunction : IBestMoveFinder
     {
         public Move FindBestMove(bool[][] board, List<Move> validMoves)
         {
-            var bestMove = validMoves[0];
-            bestMove.Score = EvaluateMove(board, bestMove);
+            var moveWithLowestScore = validMoves[0];
+            moveWithLowestScore.Score = EvaluateMove(board, moveWithLowestScore);
 
             foreach (var validMove in validMoves)
             {
-                validMove.Score = EvaluateMove(board, validMove);
+                var move = validMove;
+                move.Score = EvaluateMove(board, move);
 
-                if (validMove.Score < bestMove.Score)
+                if (move.Score < moveWithLowestScore.Score)
                 {
-                    bestMove = validMove;
+                    moveWithLowestScore = move;
                 }
             }
 
-            return bestMove;
+            return moveWithLowestScore;
         }
 
         /// <summary>

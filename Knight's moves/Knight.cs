@@ -6,13 +6,13 @@ using System.Text;
 
 namespace Knight_s_moves
 {
-    class Knight
+    public class Knight : IFigure
     {
-        public Point currentPosition;
+        public Point CurrentPosition { get; set; }
 
         public Knight(Point currentPosition)
         {
-            this.currentPosition = currentPosition;
+            this.CurrentPosition = currentPosition;
         }
 
         public List<Move> GetValidMoves(bool[][] board)
@@ -32,55 +32,21 @@ namespace Knight_s_moves
 
         private bool IsMovePossible(Move move)
         {
-            return move.X >= 0 && move.X <= 7 && move.Y >= 0 && move.Y <= 7;
+            return move.X >= 0 && move.X < Constants.BoardSize && move.Y >= 0 && move.Y < Constants.BoardSize;
         }
 
         private List<Move> GetAllMoves()
         {
             var allMoves = new List<Move>()
             {
-                new Move()
-                {
-                    X = currentPosition.X + 2,
-                    Y = currentPosition.Y + 1
-                },
-                new Move()
-                {
-                    X = currentPosition.X - 2,
-                    Y = currentPosition.Y + 1
-                },
-                new Move()
-                {
-                    X = currentPosition.X + 2,
-                    Y = currentPosition.Y - 1
-                },
-                
-                new Move()
-                {
-                    X = currentPosition.X - 2,
-                    Y = currentPosition.Y - 1
-                },
-                new Move()
-                {
-                    X = currentPosition.X + 1,
-                    Y = currentPosition.Y + 2
-                },
-                new Move()
-                {
-                    X = currentPosition.X - 1,
-                    Y = currentPosition.Y + 2
-                },
-                new Move()
-                {
-                    X = currentPosition.X + 1,
-                    Y = currentPosition.Y - 2
-                },
-
-                new Move()
-                {
-                    X = currentPosition.X - 1,
-                    Y = currentPosition.Y - 2
-                }
+                new Move(CurrentPosition.X + 2, CurrentPosition.Y + 1),
+                new Move(CurrentPosition.X - 2, CurrentPosition.Y + 1),
+                new Move(CurrentPosition.X + 2, CurrentPosition.Y - 1),
+                new Move(CurrentPosition.X - 2, CurrentPosition.Y - 1),
+                new Move(CurrentPosition.X + 1, CurrentPosition.Y + 2),
+                new Move(CurrentPosition.X - 1, CurrentPosition.Y + 2),
+                new Move(CurrentPosition.X + 1, CurrentPosition.Y - 2),
+                new Move(CurrentPosition.X - 1, CurrentPosition.Y - 2)
             };
 
             return allMoves;

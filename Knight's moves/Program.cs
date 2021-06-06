@@ -24,7 +24,7 @@ namespace Knight_s_moves
             Console.ReadKey();
 
             algorithm = new RandomMoveTaker();
-            knight.currentPosition = startPosition;
+            knight.CurrentPosition = startPosition;
             game = new ChessGame(knight, algorithm);
             consoleUi.PlayAndShow(game);
             Console.WriteLine("Это был алгоритм, выбирающий случайный ход.");
